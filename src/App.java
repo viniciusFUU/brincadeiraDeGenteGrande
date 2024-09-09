@@ -1,5 +1,12 @@
 public class App {
     public static void main(String[] args) throws Exception {
-        System.out.println("Hello, World!");
+        LinkedListComCabeca lista = new LinkedListComCabeca();
+        LinkedListSemCabeca listSemCabeca = new LinkedListSemCabeca();
+
+        listSemCabeca.add(1);
+        listSemCabeca.add(1);
+        listSemCabeca.add(1);
+
+        listSemCabeca.show();
     }
 }

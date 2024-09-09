@@ -30,14 +30,4 @@ public class LinkedListComCabeca {
             System.out.print("null");
     }
 
-    public static void main(String[] args) {
-        LinkedListComCabeca lista = new LinkedListComCabeca();
-
-        lista.add(2);
-        lista.add(2);
-        lista.add(2);
-
-        lista.show();
-    }
-
 }
