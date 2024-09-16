@@ -20,13 +20,14 @@ public class Fifo {
     }
 
     public int remove(){
-        int cabecaToReturn = 0;
+        int cabecaToExclude = 0;
 
         if (cabeca != null){
-            cabecaToReturn = cabeca.data;
+            cabecaToExclude = cabeca.next.data;
             cabeca = cabeca.next;
+            System.out.println("Excluindo " + cabecaToExclude);
         }
-        return cabecaToReturn;
+        return cabecaToExclude;
     }
 
     public void show(){
