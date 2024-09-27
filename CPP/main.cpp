@@ -9,24 +9,28 @@ struct node
 
 void insertNode(node *&n, int elemento)
 {
-    node *novo = new node;
-    novo->data = elemento;
-    novo->proximo = nullptr;
+    node *primeiro = new node;
+    node *ultimo = primeiro;
 
-    if (n == nullptr){
-        n = novo;
-    } else {
-        node *u = n;
+    primeiro->data = elemento;
+    primeiro->proximo = nullptr;
 
-        while (u->proximo != nullptr)
-        {
-            u = u->proximo;
-        }
-
-        u->proximo = novo;
-        
+    if (n == nullptr) {
+        n = primeiro;
+        ultimo = primeiro;
+        return;
     }
+
+    node *u = n;
+
+    while (u->proximo != nullptr)
+    {
+        u = u->proximo;
+    }
+
+    u->proximo = ultimo;
 }
+
 
 int removeNode(node *&n)
 {    
