@@ -7,42 +7,34 @@ struct node
     node *proximo;
 };
 
-void insertNode(node *&n, int elemento)
+void insertNode(node *&primeiro, node *&ultimo, int elemento)
 {
-    node *primeiro = new node;
-    node *ultimo = primeiro;
+    node *novo = new node();
+    novo->data = elemento;
+    novo->proximo = nullptr;
 
-    primeiro->data = elemento;
-    primeiro->proximo = nullptr;
-
-    if (n == nullptr) {
-        n = primeiro;
-        ultimo = primeiro;
+    if (primeiro == nullptr){
+        primeiro = novo;
+        ultimo = novo;
         return;
     }
 
-    node *u = n;
-
-    while (u->proximo != nullptr)
-    {
-        u = u->proximo;
-    }
-
-    u->proximo = ultimo;
+    ultimo->proximo = novo;
+    ultimo = novo;
 }
-
 
 int removeNode(node *&n)
 {    
-    int valorRemovido;
+    int valorRemovido = -1; // Valor padrão caso a lista esteja vazia
 
     if(n != nullptr){
-        node *&primeiraPosicao = n;
-        valorRemovido = primeiraPosicao->data;
-
-        n = n->proximo;
+        node *primeiraPosicao = n; // Armazena o primeiro nó
+        valorRemovido = primeiraPosicao->data; // Guarda o valor a ser removido
+        n = n->proximo; // Move o ponteiro para o próximo nó
+        primeiraPosicao = nullptr; // Libera a memória do nó removido
     }
-
+    
+    cout << "valor removido " << valorRemovido << "\n"; // Corrigido para imprimir o valor
     return valorRemovido;
 }
 
@@ -50,24 +42,26 @@ void imprimir(node *l)
 {
     while (l != NULL)
     {
-        cout << l->data << "\n";
+        cout << l->data; 
         l = l->proximo;
+        cout << "\n";
     }
+    cout << "fim da lista\n";
 }
 
 int main()
 {
-    node *lista = NULL; // Inicializa a lista como vazia
+    node *primeiro = NULL;
+    node *ultimo = NULL;
 
-    // Inserindo alguns elementos na lista
-    insertNode(lista, 10); // Insere 10
-    insertNode(lista, 20); // Insere 20
-    insertNode(lista, 30); // Insere 30
-    removeNode(lista);
-
-    // Imprimindo os elementos da lista
-    cout << "Elementos da lista:\n";
-    imprimir(lista); // Chama a função para imprimir os elementos
+    insertNode(primeiro, ultimo, 10); 
+    imprimir(primeiro);
+    insertNode(primeiro, ultimo, 20); 
+    imprimir(primeiro);
+    insertNode(primeiro, ultimo, 30); 
+    imprimir(primeiro);
+    removeNode(primeiro); // Apenas chama a função
+    imprimir(primeiro);
 
     return 0;
 }
