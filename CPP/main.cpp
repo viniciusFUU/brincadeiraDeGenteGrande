@@ -25,16 +25,16 @@ void insertNode(node *&primeiro, node *&ultimo, int elemento)
 
 int removeNode(node *&n)
 {    
-    int valorRemovido = -1; // Valor padrão caso a lista esteja vazia
+    int valorRemovido = -1;
 
     if(n != nullptr){
-        node *primeiraPosicao = n; // Armazena o primeiro nó
-        valorRemovido = primeiraPosicao->data; // Guarda o valor a ser removido
-        n = n->proximo; // Move o ponteiro para o próximo nó
-        primeiraPosicao = nullptr; // Libera a memória do nó removido
+        node *primeiraPosicao = n; 
+        valorRemovido = primeiraPosicao->data;
+        n = n->proximo; 
+        primeiraPosicao = nullptr;
     }
     
-    cout << "valor removido " << valorRemovido << "\n"; // Corrigido para imprimir o valor
+    cout << "valor removido " << valorRemovido << "\n";
     return valorRemovido;
 }
 
@@ -60,7 +60,7 @@ int main()
     imprimir(primeiro);
     insertNode(primeiro, ultimo, 30); 
     imprimir(primeiro);
-    removeNode(primeiro); // Apenas chama a função
+    removeNode(primeiro);
     imprimir(primeiro);
 
     return 0;
