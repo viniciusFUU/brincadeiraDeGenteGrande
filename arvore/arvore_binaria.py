@@ -19,38 +19,33 @@ class Node:
                 self.direita.insert(elemento)
 
     def remove(self, elemento):
-        valor_removido = int
-
         if elemento < self.no:
-                print(self.no)
+            if self.esquerda:
                 self.esquerda = self.esquerda.remove(elemento)
         elif elemento > self.no:
-                valor_removido = self.direita.no
+            if self.direita:
                 self.direita = self.direita.remove(elemento)
         else:
-            if self.esquerda is None and self.direita is None:
-                return None
+            print(f'elemento {elemento} removido da arvore')
+            
             if self.esquerda is None:
-                print(self.direita.no)
                 return self.direita
             if self.direita is None:
-                print(self.esquerda.no)
                 return self.esquerda
-    
-    def percorrer_lista(self):
-        if self.esquerda is None and self.direita is None:
-            Node.profundidade+=1
-        if self.esquerda is not None:
-            Node.profundidade+=1
-            print(self.no)
-            self = self.esquerda.percorrer_lista()
-        if self.direita is not None:
-            Node.profundidade+=1
-            self = self.direita.percorrer_lista()
-        if self.esquerda is None and self.direita is None:
-            print(Node.profundidade)
+            
+            menor_no = self.direita
+            while menor_no.esquerda:
+                menor_no = menor_no.esquerda
+            self.no = menor_no.no
+
+            self.direita = self.direita.remove(menor_no.no)
 
         return self
+    
+    def calcular_profundidade(self):
+        esquerda_profundidade = self.esquerda.calcular_profundidade() if self.esquerda else 0
+        direita_profundidade = self.direita.calcular_profundidade() if self.direita else 0
+        return 1 + max(esquerda_profundidade, direita_profundidade)
         
     
 arvore = Node(5)
@@ -60,4 +55,7 @@ arvore.insert(8)
 arvore.insert(6)
 arvore.insert(3)
 
-arvore.percorrer_lista()
+arvore.remove(3)
+arvore.remove(8)
+
+print(arvore.calcular_profundidade())
