@@ -23,18 +23,27 @@ void insertNode(node *&primeiro, node *&ultimo, int elemento)
     ultimo = novo;
 }
 
-int removeNode(node *inicio, node *&fim)
+int removeNode(node *&inicio, node *&fim)
 {    
     int valorRemovido;
 
+    if(inicio == nullptr){
+        cout << "A lista está vazia!\n";
+        return -1;
+    }
+
+    valorRemovido = inicio->data;
+
     if(inicio == fim){
-        valorRemovido = inicio;
+        delete inicio;
         inicio = nullptr;
         fim = nullptr;
+    } else {
+        node *temp = inicio;
+        inicio = inicio->proximo;
+        delete temp;
     }
-    
-    valorRemovido = inicio;
-    inicio = inicio->proximo;
+
     return valorRemovido;
 }
 
@@ -60,7 +69,7 @@ int main()
     imprimir(primeiro);
     insertNode(primeiro, ultimo, 30); 
     imprimir(primeiro);
-    removeNode(primeiro);
+    removeNode(primeiro, ultimo);
     imprimir(primeiro);
 
     return 0;
