@@ -23,18 +23,18 @@ void insertNode(node *&primeiro, node *&ultimo, int elemento)
     ultimo = novo;
 }
 
-int removeNode(node *&n)
+int removeNode(node *inicio, node *&fim)
 {    
-    int valorRemovido = -1;
+    int valorRemovido;
 
-    if(n != nullptr){
-        node *primeiraPosicao = n; 
-        valorRemovido = primeiraPosicao->data;
-        n = n->proximo; 
-        primeiraPosicao = nullptr;
+    if(inicio == fim){
+        valorRemovido = inicio;
+        inicio = nullptr;
+        fim = nullptr;
     }
     
-    cout << "valor removido " << valorRemovido << "\n";
+    valorRemovido = inicio;
+    inicio = inicio->proximo;
     return valorRemovido;
 }
 
